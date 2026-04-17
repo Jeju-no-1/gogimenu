@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Guide — Gogipyeonae</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta property="og:title" content="Gogipyeonae Menu Guide" />
+  <meta property="og:description" content="Jeju Premium Meat Restaurant — Menu Guide for International Guests" />
+  <meta property="og:image" content="images/hero-main.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:         #f8f7f5;
+      --bg-card:    #ffffff;
+      --bg-tab:     #eae7e2;
+      --border:     #e8e5e0;
+      --text:       #2c2c2c;
+      --text-sub:   #6b6560;
+      --text-hint:  #9a9590;
+      --accent:     #b8926a;
+      --accent-bg:  #faf5ef;
+      --tab-active: #2c2c2c;
+      --tab-text:   #ffffff;
+      --radius:     10px;
+      --font: 'Inter', 'Noto Sans SC', 'Noto Sans JP', -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font);
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* 헤더 */
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(248,247,245,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px 8px;
+    }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); font-weight: 400; }
+    .lang-sw { display: flex; gap: 4px; }
+    .lang-btn {
+      font-size: 12px; font-weight: 500; color: var(--text-hint);
+      padding: 4px 10px; border-radius: 14px; transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--tab-active); color: var(--tab-text); }
+
+    /* 탭 */
+    .tabs {
+      display: flex; gap: 6px; padding: 4px 20px 12px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex-shrink: 0; font-size: 13px; font-weight: 500; color: var(--text-sub);
+      padding: 7px 16px; border-radius: 20px; background: var(--bg-tab);
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .tab.active { background: var(--tab-active); color: var(--tab-text); }
+
+    /* 컨텐츠 */
+    .content { padding: 16px 16px 0; max-width: 540px; margin: 0 auto; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .section-label {
+      font-size: 11px; font-weight: 500; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 12px; padding-left: 2px;
+    }
+
+    /* 메뉴 카드 */
+    .menu-card {
+      background: var(--bg-card); border-radius: var(--radius);
+      border: 1px solid var(--border); overflow: hidden;
+      margin-bottom: 12px; transition: box-shadow 0.2s;
+    }
+    .menu-card:active { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--bg-tab); }
+    .card-body { padding: 14px 16px 16px; }
+    .card-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 2px; line-height: 1.35; }
+    .card-name-ko { font-size: 12px; font-weight: 400; color: var(--text-hint); margin-bottom: 8px; }
+    .card-price { font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+    .card-desc { font-size: 13px; font-weight: 300; color: var(--text-sub); line-height: 1.65; }
+    .card-tip {
+      margin-top: 8px; font-size: 12px; font-weight: 400; color: var(--accent);
+      background: var(--accent-bg); padding: 6px 10px; border-radius: 6px; line-height: 1.5;
+    }
+
+    /* 세트 구성 (점심특선 카드 하단) */
+    .set-includes {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px 14px; border-top: 1px solid var(--border);
+      background: var(--accent-bg);
+    }
+    .set-includes img {
+      width: 48px; height: 48px; border-radius: 8px;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .set-includes .set-text {
+      font-size: 12px; font-weight: 400; color: var(--text-sub); line-height: 1.5;
+    }
+    .set-includes .set-label {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 2px;
+    }
+
+    /* 리스트 (주류/사이드) */
+    .list-group {
+      background: var(--bg-card); border-radius: var(--radius);
+      border: 1px solid var(--border); margin-bottom: 12px; overflow: hidden;
+    }
+    .list-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+    }
+    .list-item:last-child { border-bottom: none; }
+    .list-name { font-size: 14px; font-weight: 500; color: var(--text); }
+    .list-sub { font-size: 12px; font-weight: 300; color: var(--text-hint); margin-top: 1px; }
+    .list-price { font-size: 14px; font-weight: 600; color: var(--accent); white-space: nowrap; margin-left: 12px; }
+
+    /* 배너 */
+    .guide-banner {
+      background: var(--accent-bg); border: 1px solid rgba(184,146,106,0.2);
+      border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
+    }
+    .guide-banner p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+    .guide-banner strong { color: var(--text); font-weight: 500; }
+    .event-badge {
+      display: inline-block; font-size: 12px; font-weight: 500; color: #c0392b;
+      background: #fef0ef; border: 1px solid rgba(192,57,43,0.15);
+      padding: 4px 10px; border-radius: 14px; margin-bottom: 16px;
+    }
+
+    /* 푸터 */
+    .footer { text-align: center; padding: 32px 20px 16px; color: var(--text-hint); font-size: 12px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-top">
+      <div class="logo">Gogipyeonae <span>고기편애</span></div>
+      <div class="lang-sw">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="setTab('lunch')" data-tab="lunch" data-i18n="tab_lunch">Lunch Special</button>
+      <button class="tab" onclick="setTab('menu')" data-tab="menu" data-i18n="tab_menu">Restaurant Menu</button>
+      <button class="tab" onclick="setTab('drinks')" data-tab="drinks" data-i18n="tab_drinks">Drinks</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ① 점심특선 -->
+    <div class="tab-panel active" id="panel-lunch">
+      <div class="guide-banner" data-i18n-html="lunch_banner">
+        <p><strong>Lunch Set (11:00 – 14:00)</strong><br>All lunch sets come with rice, side dishes, and soybean paste stew. Minimum 2 persons per order.</p>
+      </div>
+      <div class="event-badge" data-i18n="event_badge">Fri · Sat · Sun — Soju/Beer ₩3,000!</div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-lunch-sobul.jpg" alt="Hanwoo Bulgogi" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="lunch1_name">Hanwoo Beef Bulgogi Set</div>
+          <div class="card-name-ko">한우소불고기 + 된장찌개</div>
+          <div class="card-price">₩18,000</div>
+          <div class="card-desc" data-i18n="lunch1_desc">Premium Korean beef marinated in a sweet soy sauce, grilled tender and served with soybean paste stew.</div>
+          <div class="card-tip" data-i18n="lunch1_tip">Wrap in lettuce with garlic and ssamjang sauce for the best flavor.</div>
+        </div>
+        <div class="set-includes">
+          <img src="menu-된장찌개.jpg" alt="Doenjang Jjigae" onerror="this.style.display='none'">
+          <div>
+            <div class="set-label" data-i18n="set_label">Set Includes</div>
+            <div class="set-text" data-i18n="set_detail">Soybean Paste Stew (된장찌개) + Rice + Side Dishes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-lunch-daepae.jpg" alt="Pork Belly Set" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="lunch2_name">Chilled Pork Belly Set</div>
+          <div class="card-name-ko">냉삼겹 + 된장찌개 정식</div>
+          <div class="card-price">₩15,000</div>
+          <div class="card-desc" data-i18n="lunch2_desc">Thin-sliced chilled pork belly to grill at your table, paired with soybean paste stew.</div>
+          <div class="card-tip" data-i18n="lunch2_tip">Grill until edges are crispy. Dip in sesame oil + salt, wrap in perilla leaf.</div>
+        </div>
+        <div class="set-includes">
+          <img src="menu-된장찌개.jpg" alt="Doenjang Jjigae" onerror="this.style.display='none'">
+          <div>
+            <div class="set-label" data-i18n="set_label">Set Includes</div>
+            <div class="set-text" data-i18n="set_detail">Soybean Paste Stew (된장찌개) + Rice + Side Dishes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-lunch-duru.jpg" alt="Spicy Pork Stir-fry" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="lunch3_name">Spicy Pork Stir-fry Set</div>
+          <div class="card-name-ko">돼지두루치기 + 된장찌개정식</div>
+          <div class="card-price">₩15,000</div>
+          <div class="card-desc" data-i18n="lunch3_desc">Pork stir-fried in spicy gochujang (red pepper paste) sauce with vegetables. Served with stew.</div>
+          <div class="card-tip" data-i18n="lunch3_tip">Eat with rice — place stir-fry on top of rice for a delicious combo.</div>
+        </div>
+        <div class="set-includes">
+          <img src="menu-된장찌개.jpg" alt="Doenjang Jjigae" onerror="this.style.display='none'">
+          <div>
+            <div class="set-label" data-i18n="set_label">Set Includes</div>
+            <div class="set-text" data-i18n="set_detail">Soybean Paste Stew (된장찌개) + Rice + Side Dishes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group">
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="rice_name">Extra Rice</div>
+            <div class="list-sub">공기밥</div>
+          </div>
+          <div class="list-price">₩1,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 식당메뉴 -->
+    <div class="tab-panel" id="panel-menu">
+      <div class="guide-banner" data-i18n-html="menu_banner">
+        <p><strong>How to Order Meat</strong><br>Fresh meat (Hanwoo beef & Jeju pork) is displayed in the butcher case. Pick your cut at the counter — staff will bring it to your table for grilling. Items below are additional dishes you can order.</p>
+      </div>
+
+      <div class="section-label" data-i18n="sec_signature">Signature</div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-yukhoe.jpg" alt="Beef Tartare" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_yukhoe_name">Hanwoo Beef Tartare</div>
+          <div class="card-name-ko">한우육회</div>
+          <div class="card-price">₩25,000</div>
+          <div class="card-desc" data-i18n="m_yukhoe_desc">Hand-cut raw Hanwoo beef seasoned with sesame oil, garlic, and topped with egg yolk. A Korean delicacy.</div>
+          <div class="card-tip" data-i18n="m_yukhoe_tip">Mix the egg yolk into the beef before eating. Pair with pear slices for sweetness.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-육사시미.jpg" alt="Beef Sashimi" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_sashimi_name">Hanwoo Beef Sashimi</div>
+          <div class="card-name-ko">한우육사시미</div>
+          <div class="card-price">₩25,000</div>
+          <div class="card-desc" data-i18n="m_sashimi_desc">Thinly sliced, lightly seared premium Hanwoo beef. Served chilled with dipping sauce.</div>
+          <div class="card-tip" data-i18n="m_sashimi_tip">Dip in the accompanying wasabi soy sauce. Enjoy the delicate, melt-in-your-mouth texture.</div>
+        </div>
+      </div>
+
+      <div class="section-label" data-i18n="sec_grill">Grill</div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-bulgogi.jpg" alt="Bulgogi" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_bulgogi_name">Hanwoo Bulgogi</div>
+          <div class="card-name-ko">한우소불고기</div>
+          <div class="card-price">₩15,000</div>
+          <div class="card-desc" data-i18n="m_bulgogi_desc">Marinated Korean beef in sweet soy sauce — Korea's most iconic grilled dish.</div>
+          <div class="card-tip" data-i18n="m_bulgogi_tip">Best wrapped in lettuce with garlic, ssamjang, and a piece of grilled kimchi.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-대패삼겹.jpg" alt="Thin Pork Belly" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_daepae_name">Thin-sliced Pork Belly</div>
+          <div class="card-name-ko">대패삼겹살</div>
+          <div class="card-price">₩12,000</div>
+          <div class="card-desc" data-i18n="m_daepae_desc">Paper-thin sliced pork belly for tabletop grilling. Crispy outside, juicy inside.</div>
+          <div class="card-tip" data-i18n="m_daepae_tip">Grill quickly on high heat. Dip in sesame oil + salt, wrap in perilla leaf with rice.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-lunch-duru.jpg" alt="Spicy Pork" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_duru_name">Spicy Pork Stir-fry</div>
+          <div class="card-name-ko">돼지두루치기</div>
+          <div class="card-price">₩12,000</div>
+          <div class="card-desc" data-i18n="m_duru_desc">Pork stir-fried in gochujang (Korean red pepper paste) with onions and green onions. Savory and mildly spicy.</div>
+          <div class="card-tip" data-i18n="m_duru_tip">Great with a bowl of rice. Wrap in lettuce for a lighter taste.</div>
+        </div>
+      </div>
+
+      <div class="section-label" data-i18n="sec_soup">Soups & Stews</div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-한우곰탕.jpg" alt="Hanwoo Bone Soup" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_gomtang_name">Hanwoo Bone Soup</div>
+          <div class="card-name-ko">한우곰탕</div>
+          <div class="card-price">₩12,000</div>
+          <div class="card-desc" data-i18n="m_gomtang_desc">Rich, milky-white beef bone broth slow-simmered for hours. Served with rice and sliced beef.</div>
+          <div class="card-tip" data-i18n="m_gomtang_tip">Season with salt and chopped green onions to taste. Add rice directly into the soup.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-한우사골떡국.jpg" alt="Rice Cake Soup" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_tteok_name">Beef Bone Rice Cake Soup</div>
+          <div class="card-name-ko">한우사골떡국</div>
+          <div class="card-price">₩10,000</div>
+          <div class="card-desc" data-i18n="m_tteok_desc">Chewy sliced rice cakes in rich Hanwoo bone broth with egg. A comforting Korean classic.</div>
+          <div class="card-tip" data-i18n="m_tteok_tip">The rice cakes are filling — this works great as a full meal on its own.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-된장찌개.jpg" alt="Soybean Paste Stew" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_doenjang_name">Soybean Paste Stew</div>
+          <div class="card-name-ko">된장찌개</div>
+          <div class="card-price">₩8,000</div>
+          <div class="card-desc" data-i18n="m_doenjang_desc">Traditional Korean stew made with fermented soybean paste, tofu, and vegetables. Mild and savory.</div>
+          <div class="card-tip" data-i18n="m_doenjang_tip">A perfect side stew to enjoy with grilled meat. Similar to Japanese miso soup, but heartier.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-김치찌개.jpg" alt="Kimchi Stew" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_kimchi_name">Kimchi Stew</div>
+          <div class="card-name-ko">김치찌개</div>
+          <div class="card-price">₩9,000</div>
+          <div class="card-desc" data-i18n="m_kimchi_desc">Spicy stew with aged kimchi, pork, and tofu. Bold, tangy flavor — one of Korea's most popular dishes.</div>
+          <div class="card-tip" data-i18n="m_kimchi_tip">Moderately spicy. Goes perfectly with a bowl of rice.</div>
+        </div>
+      </div>
+
+      <div class="section-label" data-i18n="sec_noodle">Noodles</div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-냉면.jpg" alt="Cold Noodles" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_mul_name">Cold Buckwheat Noodles</div>
+          <div class="card-name-ko">물냉면</div>
+          <div class="card-price">₩8,000</div>
+          <div class="card-desc" data-i18n="m_mul_desc">Chewy buckwheat noodles in icy beef broth with pickled radish and egg. Refreshing and light.</div>
+          <div class="card-tip" data-i18n="m_mul_tip">Add vinegar and mustard to taste. Best enjoyed after grilled meat as a palate cleanser.</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="card-img" src="menu-냉면.jpg" alt="Spicy Cold Noodles" onerror="this.style.display='none'">
+        <div class="card-body">
+          <div class="card-name" data-i18n="m_bibim_name">Spicy Cold Noodles</div>
+          <div class="card-name-ko">비빔냉면</div>
+          <div class="card-price">₩8,000</div>
+          <div class="card-desc" data-i18n="m_bibim_desc">Chewy buckwheat noodles tossed in sweet-spicy gochujang sauce. Served cold with egg.</div>
+          <div class="card-tip" data-i18n="m_bibim_tip">Mix thoroughly before eating. Cut noodles with scissors if needed (Korean style!).</div>
+        </div>
+      </div>
+
+      <div class="section-label" data-i18n="sec_side">Sides</div>
+
+      <div class="list-group">
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="m_egg_name">Steamed Egg</div>
+            <div class="list-sub">계란찜 — <span data-i18n="m_egg_desc">Fluffy Korean steamed egg casserole</span></div>
+          </div>
+          <div class="list-price">₩5,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="rice_name">Extra Rice</div>
+            <div class="list-sub">공기밥</div>
+          </div>
+          <div class="list-price">₩1,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 주류 · 음료 -->
+    <div class="tab-panel" id="panel-drinks">
+      <div class="event-badge" data-i18n="event_badge">Fri · Sat · Sun — Soju/Beer ₩3,000!</div>
+
+      <div class="section-label" data-i18n="sec_alcohol">Alcohol</div>
+
+      <div class="list-group">
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_soju_name">Soju</div>
+            <div class="list-sub" data-i18n="d_soju_desc">소주 — Korean clear spirit, 16~17% ABV</div>
+          </div>
+          <div class="list-price">₩5,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_beer_name">Beer</div>
+            <div class="list-sub" data-i18n="d_beer_desc">맥주 — Korean beer</div>
+          </div>
+          <div class="list-price">₩5,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_makgeolli_name">Jeju Makgeolli</div>
+            <div class="list-sub" data-i18n="d_makgeolli_desc">제주 막걸리 — Traditional rice wine, milky & slightly sweet</div>
+          </div>
+          <div class="list-price">₩4,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_bokbunja_name">Bokbunja (Black Raspberry Wine)</div>
+            <div class="list-sub" data-i18n="d_bokbunja_desc">보해 복분자 — Sweet Korean black raspberry wine</div>
+          </div>
+          <div class="list-price">₩15,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_spirits_name">Korean Spirits</div>
+            <div class="list-sub" data-i18n="d_spirits_desc">증류주 — Premium Korean distilled spirit</div>
+          </div>
+          <div class="list-price">₩33,000</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_wine_name">Wine</div>
+            <div class="list-sub" data-i18n="d_wine_desc">와인 — Ask staff for available selection</div>
+          </div>
+          <div class="list-price" data-i18n="d_ask">Ask Staff</div>
+        </div>
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_whisky_name">Whisky</div>
+            <div class="list-sub" data-i18n="d_whisky_desc">위스키 — Ask staff for available selection</div>
+          </div>
+          <div class="list-price" data-i18n="d_ask">Ask Staff</div>
+        </div>
+      </div>
+
+      <div class="section-label" data-i18n="sec_soft">Non-Alcoholic</div>
+
+      <div class="list-group">
+        <div class="list-item">
+          <div>
+            <div class="list-name" data-i18n="d_soft_name">Soft Drink</div>
+            <div class="list-sub" data-i18n="d_soft_desc">음료 — Cola, Cider (Sprite), etc.</div>
+          </div>
+          <div class="list-price">₩2,000</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <strong>Gogipyeonae 고기편애</strong><br>
+    54-58, Sagyero 114beon-gil, Andeok-myeon, Seogwipo, Jeju<br>
+    <a href="tel:01094093411">010-9409-3411</a> · Daily 11:00 — 23:00
+  </div>
+
+  <script>
+    /* ================================================
+       다국어 데이터 — 수정이 필요하면 여기만 고치세요
+       ================================================ */
+    const I18N = {
+      en: {
+        tab_lunch: 'Lunch Special', tab_menu: 'Restaurant Menu', tab_drinks: 'Drinks',
+        event_badge: 'Fri · Sat · Sun — Soju/Beer ₩3,000!',
+        lunch_banner: '<p><strong>Lunch Set (11:00 – 14:00)</strong><br>All lunch sets come with rice, side dishes, and soybean paste stew. Minimum 2 persons per order.</p>',
+        menu_banner: '<p><strong>How to Order Meat</strong><br>Fresh meat (Hanwoo beef & Jeju pork) is displayed in the butcher case. Pick your cut at the counter — staff will bring it to your table for grilling. Items below are additional dishes you can order.</p>',
+        lunch1_name: 'Hanwoo Beef Bulgogi Set', lunch1_desc: 'Premium Korean beef marinated in a sweet soy sauce, grilled tender and served with soybean paste stew.', lunch1_tip: 'Wrap in lettuce with garlic and ssamjang sauce for the best flavor.',
+        lunch2_name: 'Chilled Pork Belly Set', lunch2_desc: 'Thin-sliced chilled pork belly to grill at your table, paired with soybean paste stew.', lunch2_tip: 'Grill until edges are crispy. Dip in sesame oil + salt, wrap in perilla leaf.',
+        lunch3_name: 'Spicy Pork Stir-fry Set', lunch3_desc: 'Pork stir-fried in spicy gochujang (red pepper paste) sauce with vegetables. Served with stew.', lunch3_tip: 'Eat with rice — place stir-fry on top of rice for a delicious combo.',
+        set_label: 'Set Includes', set_detail: 'Soybean Paste Stew (된장찌개) + Rice + Side Dishes',
+        rice_name: 'Extra Rice',
+        sec_signature: 'Signature', sec_grill: 'Grill', sec_soup: 'Soups & Stews', sec_noodle: 'Noodles', sec_side: 'Sides',
+        m_yukhoe_name: 'Hanwoo Beef Tartare', m_yukhoe_desc: 'Hand-cut raw Hanwoo beef seasoned with sesame oil, garlic, and topped with egg yolk. A Korean delicacy.', m_yukhoe_tip: 'Mix the egg yolk into the beef before eating. Pair with pear slices for sweetness.',
+        m_sashimi_name: 'Hanwoo Beef Sashimi', m_sashimi_desc: 'Thinly sliced, lightly seared premium Hanwoo beef. Served chilled with dipping sauce.', m_sashimi_tip: 'Dip in the accompanying wasabi soy sauce. Enjoy the delicate, melt-in-your-mouth texture.',
+        m_bulgogi_name: 'Hanwoo Bulgogi', m_bulgogi_desc: "Marinated Korean beef in sweet soy sauce — Korea's most iconic grilled dish.", m_bulgogi_tip: 'Best wrapped in lettuce with garlic, ssamjang, and a piece of grilled kimchi.',
+        m_daepae_name: 'Thin-sliced Pork Belly', m_daepae_desc: 'Paper-thin sliced pork belly for tabletop grilling. Crispy outside, juicy inside.', m_daepae_tip: 'Grill quickly on high heat. Dip in sesame oil + salt, wrap in perilla leaf with rice.',
+        m_duru_name: 'Spicy Pork Stir-fry', m_duru_desc: 'Pork stir-fried in gochujang (Korean red pepper paste) with onions and green onions. Savory and mildly spicy.', m_duru_tip: 'Great with a bowl of rice. Wrap in lettuce for a lighter taste.',
+        m_gomtang_name: 'Hanwoo Bone Soup', m_gomtang_desc: 'Rich, milky-white beef bone broth slow-simmered for hours. Served with rice and sliced beef.', m_gomtang_tip: 'Season with salt and chopped green onions to taste. Add rice directly into the soup.',
+        m_tteok_name: 'Beef Bone Rice Cake Soup', m_tteok_desc: 'Chewy sliced rice cakes in rich Hanwoo bone broth with egg. A comforting Korean classic.', m_tteok_tip: 'The rice cakes are filling — this works great as a full meal on its own.',
+        m_doenjang_name: 'Soybean Paste Stew', m_doenjang_desc: 'Traditional Korean stew made with fermented soybean paste, tofu, and vegetables. Mild and savory.', m_doenjang_tip: 'A perfect side stew to enjoy with grilled meat. Similar to Japanese miso soup, but heartier.',
+        m_kimchi_name: 'Kimchi Stew', m_kimchi_desc: "Spicy stew with aged kimchi, pork, and tofu. Bold, tangy flavor — one of Korea's most popular dishes.", m_kimchi_tip: 'Moderately spicy. Goes perfectly with a bowl of rice.',
+        m_mul_name: 'Cold Buckwheat Noodles', m_mul_desc: 'Chewy buckwheat noodles in icy beef broth with pickled radish and egg. Refreshing and light.', m_mul_tip: 'Add vinegar and mustard to taste. Best enjoyed after grilled meat as a palate cleanser.',
+        m_bibim_name: 'Spicy Cold Noodles', m_bibim_desc: 'Chewy buckwheat noodles tossed in sweet-spicy gochujang sauce. Served cold with egg.', m_bibim_tip: 'Mix thoroughly before eating. Cut noodles with scissors if needed (Korean style!).',
+        m_egg_name: 'Steamed Egg', m_egg_desc: 'Fluffy Korean steamed egg casserole',
+        sec_alcohol: 'Alcohol', sec_soft: 'Non-Alcoholic',
+        d_soju_name: 'Soju', d_soju_desc: '소주 — Korean clear spirit, 16~17% ABV',
+        d_beer_name: 'Beer', d_beer_desc: '맥주 — Korean beer',
+        d_makgeolli_name: 'Jeju Makgeolli', d_makgeolli_desc: '제주 막걸리 — Traditional rice wine, milky & slightly sweet',
+        d_bokbunja_name: 'Bokbunja (Black Raspberry Wine)', d_bokbunja_desc: '보해 복분자 — Sweet Korean black raspberry wine',
+        d_spirits_name: 'Korean Spirits', d_spirits_desc: '증류주 — Premium Korean distilled spirit',
+        d_wine_name: 'Wine', d_wine_desc: '와인 — Ask staff for available selection',
+        d_whisky_name: 'Whisky', d_whisky_desc: '위스키 — Ask staff for available selection',
+        d_ask: 'Ask Staff',
+        d_soft_name: 'Soft Drink', d_soft_desc: '음료 — Cola, Cider (Sprite), etc.',
+      },
+
+      zh: {
+        tab_lunch: '午餐特惠', tab_menu: '餐厅菜单', tab_drinks: '酒水饮料',
+        event_badge: '每周五·六·日 — 烧酒/啤酒 ₩3,000!',
+        lunch_banner: '<p><strong>午餐套餐 (11:00 – 14:00)</strong><br>所有午餐套餐包含米饭、小菜和大酱汤。2人以上可点。</p>',
+        menu_banner: '<p><strong>如何点肉</strong><br>新鲜肉类（韩牛和济州猪肉）陈列在肉柜中。请到柜台选择您想要的部位，工作人员会送到您的餐桌上烤制。以下是可以额外点的菜品。</p>',
+        lunch1_name: '韩牛烤肉套餐', lunch1_desc: '优质韩牛用甜酱油腌制后烤制，配大酱汤。', lunch1_tip: '用生菜包裹，配上蒜片和韩式蘸酱，味道最佳。',
+        lunch2_name: '冷冻五花肉套餐', lunch2_desc: '薄切冷冻五花肉，在餐桌上自己烤制，配大酱汤。', lunch2_tip: '烤至边缘酥脆，蘸芝麻油+盐，用苏子叶包着吃。',
+        lunch3_name: '辣炒猪肉套餐', lunch3_desc: '猪肉用辣椒酱和蔬菜一起炒制，配大酱汤。', lunch3_tip: '配米饭一起吃 — 把炒肉放在米饭上，非常美味。',
+        set_label: '套餐包含', set_detail: '大酱汤 (된장찌개) + 米饭 + 小菜',
+        rice_name: '米饭（加份）',
+        sec_signature: '招牌推荐', sec_grill: '烤肉', sec_soup: '汤类', sec_noodle: '面条', sec_side: '小菜',
+        m_yukhoe_name: '韩牛肉脍', m_yukhoe_desc: '手切生韩牛肉，用芝麻油和蒜调味，顶部放蛋黄。韩国传统美食。', m_yukhoe_tip: '先把蛋黄拌入牛肉中再吃，配梨片口感更佳。',
+        m_sashimi_name: '韩牛刺身', m_sashimi_desc: '薄切微煎的优质韩牛肉，冷盘配蘸料上桌。', m_sashimi_tip: '蘸芥末酱油食用，享受入口即化的口感。',
+        m_bulgogi_name: '韩牛烤肉', m_bulgogi_desc: '用甜酱油腌制的韩牛 — 韩国最经典的烤肉菜品。', m_bulgogi_tip: '用生菜包裹，配上蒜片、韩式蘸酱和烤泡菜，味道最好。',
+        m_daepae_name: '薄切五花肉', m_daepae_desc: '像纸一样薄的五花肉片，在桌上烤制。外酥里嫩。', m_daepae_tip: '大火快烤，蘸芝麻油+盐，用苏子叶包米饭一起吃。',
+        m_duru_name: '辣炒猪肉', m_duru_desc: '猪肉用辣椒酱和洋葱、葱一起炒制。微辣鲜香。', m_duru_tip: '配米饭一起吃最好，也可以用生菜包着吃。',
+        m_gomtang_name: '韩牛骨汤', m_gomtang_desc: '浓郁的乳白色牛骨汤，慢炖数小时。配米饭和牛肉片。', m_gomtang_tip: '根据口味加盐和葱花调味，可以把米饭直接倒入汤中。',
+        m_tteok_name: '韩牛骨年糕汤', m_tteok_desc: '浓郁韩牛骨汤中加入Q弹年糕片和鸡蛋。韩国经典暖食。', m_tteok_tip: '年糕很有饱腹感，单独作为一餐也完全足够。',
+        m_doenjang_name: '大酱汤', m_doenjang_desc: '用发酵大豆酱、豆腐和蔬菜制作的传统韩国汤。温和鲜美。', m_doenjang_tip: '搭配烤肉一起喝的完美汤品。类似日本味噌汤，但更浓郁。',
+        m_kimchi_name: '泡菜汤', m_kimchi_desc: '用陈年泡菜、猪肉和豆腐制作的辣汤。韩国最受欢迎的菜品之一。', m_kimchi_tip: '中辣程度，配米饭最好。',
+        m_mul_name: '水冷面', m_mul_desc: 'Q弹荞麦面配冰凉牛骨汤、腌萝卜和鸡蛋。清爽解腻。', m_mul_tip: '根据口味加醋和芥末。烤肉后吃最爽口。',
+        m_bibim_name: '拌冷面', m_bibim_desc: 'Q弹荞麦面拌甜辣辣椒酱，冷食配鸡蛋。', m_bibim_tip: '吃前充分搅拌。可以用剪刀剪断面条（韩国吃法！）。',
+        m_egg_name: '蒸蛋', m_egg_desc: '蓬松的韩式蒸蛋',
+        sec_alcohol: '酒类', sec_soft: '无酒精饮料',
+        d_soju_name: '烧酒', d_soju_desc: '소주 — 韩国代表性蒸馏酒，酒精度16~17%',
+        d_beer_name: '啤酒', d_beer_desc: '맥주 — 韩国啤酒',
+        d_makgeolli_name: '济州米酒', d_makgeolli_desc: '제주 막걸리 — 传统米酒，乳白色，微甜',
+        d_bokbunja_name: '覆盆子酒', d_bokbunja_desc: '보해 복분자 — 韩国黑覆盆子甜酒',
+        d_spirits_name: '韩国蒸馏酒', d_spirits_desc: '증류주 — 高档韩国蒸馏酒',
+        d_wine_name: '葡萄酒', d_wine_desc: '와인 — 请询问工作人员',
+        d_whisky_name: '威士忌', d_whisky_desc: '위스키 — 请询问工作人员',
+        d_ask: '请询问',
+        d_soft_name: '饮料', d_soft_desc: '음료 — 可乐、雪碧等',
+      },
+
+      ja: {
+        tab_lunch: 'ランチ特選', tab_menu: 'レストランメニュー', tab_drinks: 'ドリンク',
+        event_badge: '毎週金·土·日 — 焼酎/ビール ₩3,000!',
+        lunch_banner: '<p><strong>ランチセット (11:00 – 14:00)</strong><br>全てのランチセットにご飯、おかず、テンジャンチゲ付き。2名様以上からご注文可能。</p>',
+        menu_banner: '<p><strong>お肉の注文方法</strong><br>新鮮なお肉（韓牛と済州豚）はショーケースに陳列されています。カウンターでお好みの部位をお選びください。スタッフがテーブルまでお持ちします。以下は追加でご注文いただけるメニューです。</p>',
+        lunch1_name: '韓牛プルコギセット', lunch1_desc: '甘い醤油ダレに漬け込んだプレミアム韓牛を焼き上げ、テンジャンチゲとセットで。', lunch1_tip: 'サンチュに包んで、にんにくとサムジャンと一緒にどうぞ。',
+        lunch2_name: '冷凍サムギョプサルセット', lunch2_desc: '薄切りの冷凍豚バラ肉をテーブルで焼いて楽しめます。テンジャンチゲ付き。', lunch2_tip: 'カリカリに焼いて、ごま油+塩につけ、エゴマの葉で包んで。',
+        lunch3_name: '豚肉コチュジャン炒めセット', lunch3_desc: '豚肉をコチュジャン（唐辛子味噌）と野菜で炒めた料理。テンジャンチゲ付き。', lunch3_tip: 'ご飯にのせて食べると最高です。',
+        set_label: 'セット内容', set_detail: 'テンジャンチゲ (된장찌개) + ご飯 + おかず',
+        rice_name: 'ライス（追加）',
+        sec_signature: 'おすすめ', sec_grill: '焼き物', sec_soup: 'スープ・チゲ', sec_noodle: '麺類', sec_side: 'サイド',
+        m_yukhoe_name: '韓牛ユッケ', m_yukhoe_desc: '手切りの生韓牛肉をごま油とにんにくで味付け、卵黄をのせて。韓国の伝統料理。', m_yukhoe_tip: '卵黄を牛肉に混ぜてからお召し上がりください。梨と一緒に食べると美味。',
+        m_sashimi_name: '韓牛刺身', m_sashimi_desc: '薄切りにした韓牛を軽く炙り、冷製でタレと一緒に。', m_sashimi_tip: 'わさび醤油につけてどうぞ。とろける食感をお楽しみください。',
+        m_bulgogi_name: '韓牛プルコギ', m_bulgogi_desc: '甘い醤油ダレに漬け込んだ韓牛 — 韓国を代表する焼肉料理。', m_bulgogi_tip: 'サンチュににんにく、サムジャン、焼きキムチと一緒に包んで。',
+        m_daepae_name: '薄切り豚バラ', m_daepae_desc: '紙のように薄い豚バラ肉をテーブルで焼きます。外はカリカリ、中はジューシー。', m_daepae_tip: '強火でサッと焼いて、ごま油+塩につけ、エゴマの葉とご飯で包んで。',
+        m_duru_name: '豚肉のコチュジャン炒め', m_duru_desc: '豚肉をコチュジャンと玉ねぎ、ねぎで炒めた料理。旨辛。', m_duru_tip: 'ご飯と一緒にどうぞ。サンチュで包んでもさっぱり。',
+        m_gomtang_name: '韓牛コムタン', m_gomtang_desc: '何時間も煮込んだ濃厚な乳白色の牛骨スープ。ご飯と牛肉スライス付き。', m_gomtang_tip: '塩とねぎでお好みに味付け。ご飯をスープに入れてどうぞ。',
+        m_tteok_name: '韓牛骨トック', m_tteok_desc: '濃厚な韓牛骨スープにもちもちのトック（餅）と卵入り。韓国の定番。', m_tteok_tip: 'お餅はボリュームたっぷり。一食分として十分です。',
+        m_doenjang_name: 'テンジャンチゲ', m_doenjang_desc: '発酵大豆味噌、豆腐、野菜の伝統的な韓国スープ。まろやかで優しい味。', m_doenjang_tip: '焼肉と一緒に飲むのに最適。日本の味噌汁に似ていますが、もう少し濃厚。',
+        m_kimchi_name: 'キムチチゲ', m_kimchi_desc: '熟成キムチ、豚肉、豆腐の辛いスープ。韓国で最も人気のある料理の一つ。', m_kimchi_tip: '中辛程度。ご飯との相性抜群。',
+        m_mul_name: '水冷麺', m_mul_desc: 'もちもちのそば麺を冷たい牛骨スープで。大根の漬物と卵付き。さっぱり。', m_mul_tip: 'お好みで酢とからしを追加。焼肉の後のシメに最適。',
+        m_bibim_name: 'ビビン冷麺', m_bibim_desc: 'もちもちのそば麺を甘辛コチュジャンソースで和えて。冷製、卵付き。', m_bibim_tip: 'よく混ぜてからお召し上がりください。はさみで麺を切ってもOK（韓国式！）。',
+        m_egg_name: '蒸し卵（ケランチム）', m_egg_desc: 'ふわふわの韓国式蒸し卵',
+        sec_alcohol: 'お酒', sec_soft: 'ソフトドリンク',
+        d_soju_name: '焼酎', d_soju_desc: '소주 — 韓国の蒸留酒、度数16~17%',
+        d_beer_name: 'ビール', d_beer_desc: '맥주 — 韓国のビール',
+        d_makgeolli_name: '済州マッコリ', d_makgeolli_desc: '제주 막걸리 — 伝統の米酒、ほんのり甘い',
+        d_bokbunja_name: 'ポクブンジャ（覆盆子酒）', d_bokbunja_desc: '보해 복분자 — 韓国の甘いブラックラズベリーワイン',
+        d_spirits_name: '韓国蒸留酒', d_spirits_desc: '증류주 — プレミアム韓国蒸留酒',
+        d_wine_name: 'ワイン', d_wine_desc: '와인 — スタッフにお尋ねください',
+        d_whisky_name: 'ウイスキー', d_whisky_desc: '위스키 — スタッフにお尋ねください',
+        d_ask: 'スタッフへ',
+        d_soft_name: 'ソフトドリンク', d_soft_desc: '음료 — コーラ、サイダー等',
+      }
+    };
+
+    let currentLang = 'en';
+    let currentTab = 'lunch';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const t = I18N[lang];
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active',
+          (lang === 'en' && btn.textContent.trim() === 'EN') ||
+          (lang === 'zh' && btn.textContent.trim() === '中文') ||
+          (lang === 'ja' && btn.textContent.trim() === '日本語')
+        );
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key]) el.innerHTML = t[key];
+      });
+    }
+
+    function setTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+      });
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'panel-' + tab);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    setLang('en');
+  </script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
